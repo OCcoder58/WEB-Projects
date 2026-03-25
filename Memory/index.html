@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Game</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center my-4">Memory Game</h1>
+
+      <p id="message" class="text-center font-weight-bold"></p>
+
+      <div id="game-board" class="row justify-content-center">
+        <div class="card" onclick="flipLogic(this, 0)">?</div>
+        <div class="card" onclick="flipLogic(this, 1)">?</div>
+
+        <div class="card" onclick="flipLogic(this, 2)">?</div>
+        <div class="card" onclick="flipLogic(this, 3)">?</div>
+
+        <div class="card" onclick="flipLogic(this, 4)">?</div>
+        <div class="card" onclick="flipLogic(this, 5)">?</div>
+
+        <div class="card" onclick="flipLogic(this, 6)">?</div>
+        <div class="card" onclick="flipLogic(this, 7)">?</div>
+      </div>
+
+      <div class="text-center mt-3">
+        <button class="btn btn-secondary" onclick="location.reload()">
+          New Round
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Symbole fuer die Karten
+      let cards = ["🍎", "🍎", "🍌", "🍌", "🍇", "🍇", "🍓", "🍓"];
+
+      // anfang alles auf null setzen
+      let firstCard = null;
+      let secondCard = null;
+      let firstIndex = null;
+      let secondIndex = null;
+      let lockBoard = false;
+      let matches = 0;
+
+      function flipLogic(card, index) {
+        if (lockBoard) return;
+
+        // karte darf nicht nochmal geklickt werden
+        if (card.textContent.trim() !== "?") return;
+
+        // karte aufdecken
+        card.textContent = cards[index];
+        card.classList.add("flipped");
+
+        //  karte 1 merken
+        if (firstCard === null) {
+          firstCard = card;
+          firstIndex = index;
+          return;
+        }
+
+        // karte 2 merken
+        secondCard = card;
+        secondIndex = index;
+        lockBoard = true;
+
+        // vergleiche karte 1 mit Karte 2
+        if (cards[firstIndex] === cards[secondIndex]) {
+          matches++;
+
+          firstCard = null;
+          secondCard = null;
+          firstIndex = null;
+          secondIndex = null;
+          lockBoard = false;
+
+          if (matches === 4) {
+            document.getElementById("message").textContent = "You won!";
+          }
+        } else {
+          // TODO timeout funktion!!
+          setTimeout(function () {
+            firstCard.textContent = "?";
+            secondCard.textContent = "?";
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+
+            firstCard = null;
+            secondCard = null;
+            firstIndex = null;
+            secondIndex = null;
+            lockBoard = false;
+          }, 800);
+        }
+      }
+    </script>
+  </body>
+</html>
