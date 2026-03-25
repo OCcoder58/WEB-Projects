@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animal Soundboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .sequence-note {
+        display: inline-block;
+        margin: 4px;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .sequence-note.active {
+        background: #ffeeba;
+        border-color: #f0ad4e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center my-5">
+      <h1>Animal Soundboard</h1>
+      <p>Press the following keys to play the sounds:</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><strong>A</strong> - C</li>
+        <li class="list-inline-item"><strong>S</strong> - D</li>
+        <li class="list-inline-item"><strong>D</strong> - E</li>
+        <li class="list-inline-item"><strong>F</strong> - F</li>
+        <li class="list-inline-item"><strong>G</strong> - G</li>
+        <li class="list-inline-item"><strong>H</strong> - A</li>
+        <li class="list-inline-item"><strong>J</strong> - B</li>
+      </ul>
+
+      <div id="piano" class="d-flex justify-content-center">
+        <div class="key" id="keyC">C</div>
+        <div class="key" id="keyD">D</div>
+        <div class="key" id="keyE">E</div>
+        <div class="key" id="keyF">F</div>
+        <div class="key" id="keyG">G</div>
+        <div class="key" id="keyA">A</div>
+        <div class="key" id="keyB">B</div>
+      </div>
+
+      <div class="mt-4">
+        <button id="loadSongBtn" class="btn btn-primary mr-2">Load Sequence</button>
+        <button id="playBtn" class="btn btn-success mr-2">Play</button>
+        <button id="pauseBtn" class="btn btn-warning mr-2">Pause</button>
+        <button id="resetBtn" class="btn btn-danger">Reset</button>
+      </div>
+
+      <p class="mt-3"><strong>Shortcuts:</strong> P = Play, O = Pause, R = Reset</p>
+
+      <h3 class="mt-4">Loaded Sequence</h3>
+      <div id="sequenceContainer"></div>
+
+      <p id="statusText" class="mt-3">Status: Ready</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
