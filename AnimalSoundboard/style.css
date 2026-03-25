@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.piano-container {
+  text-align: center;
+}
+
+.piano {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.key {
+  padding: 20px;
+  border: 1px solid #000;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key.active {
+  opacity: 0.7;
+}
